@@ -11,9 +11,9 @@ show_full_navigation: true
 logo: /siteicon.png
 description: "Cicada - Documentation for a tiny web framework"
 author:
-  name:
+  name: Cicada Team
   email:
-  twitter: # twitter username without the @ symbol
+  twitter: grobmeier
 social:
   name: Cicada 
   links:
