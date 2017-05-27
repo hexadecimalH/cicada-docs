@@ -1,38 +1,43 @@
 ---
 title: Welcome
 ---
+Cicada is micro PHP framework that helps creating and various applications that very quickly handles HTTP requests execute desired functions and returning appropriate response.
 
-This is the **Edition** template from [CloudCannon](http://cloudcannon.com/).
-**Edition** is perfect for documenting your product, application or service.
-It's populated with example content to give you some ideas.
+### What is the Point ?
 
-ChatApp is a fictional chat application for sending messages and media to others.
-Teams and friend groups would use ChatApp to stay up to date if it existed.
+In the core functionality of Cicada is HTTP handler, which makes it perfect for creating API, but never the less Cicada can also function as an Web Application. Besides everything Cicada is framework which is really easy understandable and effortlessly to learn it.
 
-> [Sign up](http://example.com/signup) or learn more about ChatApp at [example.com](http://example.com/).
+### Basic Principle
 
-### Getting Started
+First thing, for setting and running Cicada you will need a server Apache or Nginx. The server have to be correctly configured to send all request to main entry point `index.php`. Inside entry point (`index.php` in this case) we are creating an instance of Cicada application which will enable us creating the routes 
 
-Getting a message sent is quick and easy with ChatApp:
 
-1. Sign up for an account
-2. Add your friends from their email addresses
-3. Type a message or send a photo
+```
+<?php
+require '../vendor/autoload.php'
 
-> Feel free to send us a message at [feedback@example.com](mailto:feedback@example.com) with your feedback.
+// Include Cicada Application
+use Cicada\Application;
 
-### Features
+// Include Resonse and Request Object from Symfony Library
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-Explore more of ChatApp by reading about our features:
+//Create Instance of Cicada Application
+$app = new Application();
 
-#### Media
+// Add a route
+$app->get('/hello/{name}', function (Application $app, Request $request, $name) {
+return new Response("Hello $name");
+});
+// Run Application
+$app->run();
+```
 
-Send images, videos and other media to people. Sources include your computer, phone and Facebook.
+### Using 3th party Components
 
-#### Contact Syncing
+Cicada Framework from the core uses some of the most reliable third party libraries. The compatibility with other components or libraries is seamless and it work just fine.
 
-Sync your contact list with your phone and/or Facebook contacts. Never lose your contacts between devices again!
+### Reading the documentation
 
-#### Devices
-
-ChatApp is available everywhere. Find out how to set it up on your all your devices.
+This Documentations is designed for both newbies and people who already work with Cicada. So, if you are new to Cicada I strongly recommend you starting to read this from Start to End, if not you are free to jump in any of the section for your interest.
