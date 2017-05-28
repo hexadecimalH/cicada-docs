@@ -1,4 +1,8 @@
-#
+---
+title: Application
+category: Your First Cicada Application
+order: 1
+---
 # First Application
 
 Before we approach to next step please make sure that you have created environment for application, if not please refer to Setting Up Server and Setting Up Cicada section. This section will introduce the main principle of Cicada application, which includes setting the namespace, dependency injection, project directory structure and etc.
@@ -283,7 +287,7 @@ $app->get('/dashboard', [$mainController, "dashboard"]);
 $app->run();
 ```
 
-Let's check the result of our application:![](/assets/Screenshot from 2017-05-27 21-09-12.png)Before we move to conclusion let's check our directory root
+Let's check the result of our application:![](/images/screenshot.png)Before we move to conclusion let's check our directory root
 
 ```
 +-- project/

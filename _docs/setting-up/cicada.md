@@ -19,7 +19,6 @@ composer require "cicada/cicada=@stable"
 
 After requiring the Cicada package include the autoload file inside entry point
 
-{% sample lang='php'%}
 ```
 <?php
 require 'vendor/autoload.php';

@@ -1,4 +1,8 @@
-#
+---
+title: Request
+category: Diving into
+order: 1
+---
 ## Requests
 
 Requests are one of the most important objects in Web Programming, they represent literary the communication between server and client, so we can freely say that requests are the most valuable objects. Cicada in itself contain Symfony component that holds HttpFoundation which has main objects like Request, Response, FileBag, HeaderBag, JsonResponse, Cookie, Sessions and etc. For now we gonna examine Request object, which let as inspect and manipulate HTTP method, body and headers.

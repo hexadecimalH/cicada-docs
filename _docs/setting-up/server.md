@@ -14,7 +14,6 @@ We can setup Apache in 2 ways
 - placing project as an Virtual Host
 
 In both cases make sure to enable `rewrite_mod` in Apache for Linux users that would be just typing into terminal `a2enmod rewrite`, for Windows users in file `httpd.conf` find line
-{% sample lang='apacheconf' %}
 ```
 #LoadModule rewrite_module modules/mod_rewrite.so
 ```
@@ -22,7 +21,6 @@ In both cases make sure to enable `rewrite_mod` in Apache for Linux users that w
 
 Remove the Hash in front of the sentence, which is sign for starting the comment.Also make sure that option ` AllowOverride` is set to `all`. Next step would be placing placing `.htaccess` file in root project directory for using rewrite option. The content of `.htaccess` file is following:
 
-{% sample lang='apacheconf' %}
 ```~~~
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -45,7 +43,6 @@ Our file `.htaccess` will play main role in rewriting the requests and sending t
 ### Configuring Nginx
 
 Setting virtual host in Nginx seams more easier. By entering in `/etc/nginx/sites-available/` we should create an instance of host which have to look like this
-{% sample lang='text' %}
 ```
 server {
 listen 80;
