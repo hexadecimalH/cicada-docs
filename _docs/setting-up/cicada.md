@@ -3,8 +3,6 @@ title: Cicada
 category: Setting Up
 order: 1
 ---
-#Installation
-
 ### System Requierments
 - Web Server with URL rewriting
 - PHP 5.5 or newer

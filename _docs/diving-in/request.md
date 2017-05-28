@@ -3,8 +3,6 @@ title: Request
 category: Diving into
 order: 1
 ---
-## Requests
-
 Requests are one of the most important objects in Web Programming, they represent literary the communication between server and client, so we can freely say that requests are the most valuable objects. Cicada in itself contain Symfony component that holds HttpFoundation which has main objects like Request, Response, FileBag, HeaderBag, JsonResponse, Cookie, Sessions and etc. For now we gonna examine Request object, which let as inspect and manipulate HTTP method, body and headers.
 
 ### How to get Request object?
@@ -13,7 +11,7 @@ The request object is injected into Cicada routes as a second parameter \(first 
 
 ```php
 public function dashboard(Application $app, Request $request){
-return "<h1>This is dashboard page</h1>";
+    return "<h1>This is dashboard page</h1>";
 }
 ```
 
@@ -27,7 +25,7 @@ public function dashboard(Application $app, Request $request){
 $parameters = $request->request->all();
 // getting one parameter by a key
 $parameter = $request->request->get("parameter");
-return "<h1>This is dashboard page</h1>";
+    return "<h1>This is dashboard page</h1>";
 }
 ```
 

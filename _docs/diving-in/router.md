@@ -3,21 +3,20 @@ title: Router
 category: Diving into
 order: 1
 ---
-## Diving into Router
-
 ##### Routes Collection
 
-Cicada framework has unique tool that enables to group specific routes under determined prefix, plus enabling further manipulation before and after function which are meant to be executed before or after respectively. Let's give an example for kick start
+Cicada framework has unique tool that enables to group specific routes under determined prefix, plus enabling further manipulation before and after function which are meant to be executed before or after recieveing request. Let's give an example for kick start
 
 ```php
+// here we have initialized route collection and added prefix
 /** @var RouteCollection $storesCollection */
 $mainCollection = $app['collection_factory']
-->prefix('/main')
-});
-$mainCollection->get('/index', [ $mainController, 'index' ]);
-$mainCollection->get('/dashboard', [ $mainController, 'dashboard' ]);
-$mainCollection->get('/login', [ $mainController, 'login' ]);
-$mainCollection->get('/modules', [ $mainController, 'modules' ]);
+    ->prefix('/main');
+$app->get('/index',     [ $mainController, 'index' ]);
+$app->get('/dashboard', [ $mainController, 'dashboard' ]);
+$app->get('/login',     [ $mainController, 'login' ]);
+$app->get('/modules',   [ $mainController, 'modules' ]);
+
 $app->addRouteCollection($mainCollection);
 ```
 
@@ -37,17 +36,18 @@ $mainController = new MainController($app['mainService']);
 
 /** @var RouteCollection $storesCollection */
 $mainCollection = $app['collection_factory']
-->prefix('/main')
-$mainCollection->get('/index', [ $mainController, 'index' ]);
-$mainCollection->get('/dashboard', [ $mainController, 'dashboard' ]);
-$mainCollection->get('/login', [ $mainController, 'login' ]);
-$mainCollection->get('/modules', [ $mainController, 'modules' ]);
+    ->prefix('/main');
+$mainCollection->get('/index',      [ $mainController, 'index' ]);
+$mainCollection->get('/dashboard',  [ $mainController, 'dashboard' ]);
+$mainCollection->get('/login',      [ $mainController, 'login' ]);
+$mainCollection->get('/modules',    [ $mainController, 'modules' ]);
+
 $app->addRouteCollection($mainCollection);
 
 $app->run();
 ```
 
-The function "addRouteCollection\(\)" registers all routes defined within the collection. Now let's take a look on updated MainController:
+The function "addRouteCollection\(\)" registers all routes defined within the collection. Now the route to our main router will be "/main/" + one of the routes. Now let's take a look on updated MainController:
 
 ```php
 <?php
@@ -59,40 +59,40 @@ use DemoNamespace\Services\MainService;
 
 class MainController
 {
-/** @var MainService $mainService **/
-private $mainService;
+    /** @var MainService $mainService **/
+    private $mainService;
 
-public function __construct($mainService){
-$this->mainService = $mainService;
-}
+    public function __construct($mainService){
+        $this->mainService = $mainService;
+    }
 
-public function index(){
-$names = $this->mainService->getNames();
-$htmlString = "<ul>";
-foreach($names as $name){
-$htmlString = $htmlString. ("<li>".$name."</li>");
-}
-$htmlString = $htmlString."</ul>";
-return "<h1>This is index page</h1>".$htmlString;
-}
+    public function index(){
+        $names = $this->mainService->getNames();
+        $htmlString = "<ul>";
+        foreach($names as $name){
+            $htmlString = $htmlString. ("<li>".$name."</li>");
+        }
+        $htmlString = $htmlString."</ul>";
+        return "<h1>This is index page</h1>".$htmlString;
+    }
 
-public function dashboard(){
-return "<h1>This is dashboard page</h1>";
-}
+    public function dashboard(){
+        return "<h1>This is dashboard page</h1>";
+    }
 
-public function login(){
-return "<h1>This is login page</h1>";
-}
+    public function login(){
+        return "<h1>This is login page</h1>";
+    }
 
-public function modules(){
-return "<h1>This is modules page</h1>";
-}
+    public function modules(){
+        return "<h1>This is modules page</h1>";
+    }
 }
 ```
 
 ### POST Route
 
-Till now we have just covered, get route with route collection, besides that Cicada offer us full range of Routes known by standards their usage will test on already pre-defined `$mainCollection` . In difference with GET route we are just changing key word, and adding method in our controller respectively.
+Till now we have just covered, get route with route collection, besides that Cicada offer us full range of Routes known by standards, their usage will test on `$mainCollection` which we already created in one of the previous examples . The difference between POST and GET route is just in key word which comes after collection name, please don't forget to add method in Controller with same since Cicada lookup is case sensitive .
 
 ```php
 $mainCollection->post('/sign-in', [ $mainController, 'signIn' ]);
@@ -102,13 +102,13 @@ Let's add the method in MainController
 
 ```php
 public function signIn(){
-return "Sign In";
+    return "Sign In";
 }
 ```
 
 ### PUT Route
 
-Cicada enable us to register HTTP put method, which also accepts two parameters first one route URL, and second array which first element is controller name and second name of method inside controller
+Cicada enable us to register HTTP put method, which accepts two parameters first one route URL, and second array which first element is controller name and second name of method inside controller
 
 ```php
 $mainCollection->put('/sign-in', [ $mainController, 'signIn' ]);
@@ -116,7 +116,7 @@ $mainCollection->put('/sign-in', [ $mainController, 'signIn' ]);
 
 ### DELETE Route
 
-Cicada enable us to register HTTP delete method, which also accepts two parameters first one route URL, and second array which first element is controller name and second name of method inside controller
+Cicada enable us to register HTTP delete method, which accepts two parameters first one route URL, and second array which first element is controller name and second name of method inside controller
 
 ```php
 $mainCollection->delete('/sign-in', [ $mainController, 'signIn' ]);
@@ -124,7 +124,7 @@ $mainCollection->delete('/sign-in', [ $mainController, 'signIn' ]);
 
 ### OPTIONS Route
 
-Cicada enable us to register HTTP option method, which also accepts two parameters first one route URL, and second array which first element is controller name and second name of method inside controller
+Cicada enable us to register HTTP option method, which accepts two parameters first one route URL, and second array which first element is controller name and second name of method inside controller
 
 ```php
 $mainCollection->option('/sign-in', [ $mainController, 'signIn' ]);
@@ -144,7 +144,7 @@ Placeholder is defined with curly brackets and between them we can set the varia
 
 ```php
 public function deleteItem($id){
-return $id;
+    return $id;
 }
 ```
 
@@ -157,20 +157,20 @@ Before and After function can give us a lot of control over requests that our ap
 ```php
 // adding before function on route collection
 $mainCollection = $app['collection_factory']
-->prefix('/main')
-->before(function(Application $app, Request $request){
-var_dump("hello BEFORE");
-})->after(function(Application $app, Request $request){
-var_dump("hello BEFORE");
-});
+    ->prefix('/main')
+    ->before(function(Application $app, Request $request){
+        var_dump("hello BEFORE");
+    })->after(function(Application $app, Request $request){
+        var_dump("hello BEFORE");
+    });
 
 // adding before function on specific route
 $mainCollection->get('/index', [ $mainController, 'index' ])
-->before(function(Application $app, Request $request){
-var_dump("hello BEFORE")
-})->after(function(Application $app, Request $request){
-var_dump("hello AFTER")
-});
+    ->before(function(Application $app, Request $request){
+        var_dump("hello BEFORE");
+    })->after(function(Application $app, Request $request){
+        var_dump("hello AFTER");ss
+    });
 ```
 
 ### Conclusion

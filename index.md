@@ -12,7 +12,7 @@ In the core functionality of Cicada is HTTP handler, which makes it perfect for 
 First thing, for setting and running Cicada you will need a server Apache or Nginx. The server have to be correctly configured to send all request to main entry point `index.php`. Inside entry point (`index.php` in this case) we are creating an instance of Cicada application which will enable us creating the routes 
 
 
-```
+```php
 <?php
 require '../vendor/autoload.php'
 
@@ -28,7 +28,7 @@ $app = new Application();
 
 // Add a route
 $app->get('/hello/{name}', function (Application $app, Request $request, $name) {
-return new Response("Hello $name");
+    return new Response("Hello $name");
 });
 // Run Application
 $app->run();

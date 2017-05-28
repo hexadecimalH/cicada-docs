@@ -1,10 +1,8 @@
 ---
 title: Application
 category: Your First Cicada Application
-order: 1
+order: 3
 ---
-# First Application
-
 Before we approach to next step please make sure that you have created environment for application, if not please refer to Setting Up Server and Setting Up Cicada section. This section will introduce the main principle of Cicada application, which includes setting the namespace, dependency injection, project directory structure and etc.
 
 ---
@@ -24,9 +22,9 @@ If we inspect our `composer.json` file it will look like this
 
 ```json
 {
-"require": {
-"cicada/cicada": "@stable"
-}
+    "require": {
+        "cicada/cicada": "@stable"
+    }
 }
 ```
 
@@ -37,14 +35,16 @@ Now we need to create separate routes and different classes/controllers to handl
 Namespace in Cicada Framework is defined inside `composer.json`by adding new json property "autoload" in which we will embed namespace that we need . Composer file now looks like this
 
 ```json
-"require": {
-"cicada/cicada": "@stable"
-},
-"autoload": {
-"psr-4": {
-"DemoNamespace\\": "src/",
-"DemoTestNamespace\\": "tests/"
-}
+{
+    "require": {
+        "cicada/cicada": "@stable"
+    },
+    "autoload": {
+        "psr-4": {
+        "DemoNamespace\\": "src/",
+        "DemoTestNamespace\\": "tests/"
+        }
+    }
 }
 ```
 
@@ -85,21 +85,21 @@ namespace DemoNamespace\Controllers;
 
 class MainController
 {
-public function __construct(){
+    public function __construct(){
 
-}
+    }
 
-public function index(){
-return "<h1>This is index page</h1>"
-}
+    public function index(){
+        return "<h1>This is index page</h1>"
+    }
 
-public function dashboard(){
-return "<h1>This is dashboard page</h1>"
-}
+    public function dashboard(){
+        return "<h1>This is dashboard page</h1>"
+    }
 }
 ```
 
-No we have controller that serves 2 main views of our application \( basically they are just function that return string-for now\), in order to get it working we have to create an instance of this MainController in`index.php`and define routes for specific url.
+Now we have controller that serves two main views of our application \( basically they are just function that return string-for now\), in order to get it working we have to create an instance of this MainController in`index.php`and define routes for specific url.
 
 Let's take a look at `index.php`
 
@@ -108,8 +108,12 @@ Let's take a look at `index.php`
 require 'vendor/autoload.php';
 
 use Cicada\Application;
-use Symfony\Component\HttpFoundation\Request; // Within Cicada package included Symfony Request objects
-use Symfony\Component\HttpFoundation\Response // Within Cicada package included Symfony Request objects
+
+// Within Cicada package included Symfony Request objects
+use Symfony\Component\HttpFoundation\Request; 
+
+// Within Cicada package included Symfony Request objects
+use Symfony\Component\HttpFoundation\Response 
 // including our new Controller using namespace
 use DemoNamespace\Controllers\MainController;
 
@@ -119,13 +123,14 @@ $app = new Application();
 $mainController = new MainController();
 
 //Add a route that will serve string from Controller
-$app->get('/', [$mainController, "index"]); // inside GET function we first place URL than inside
+// inside GET function we first place URL than inside
+$app->get('/', [$mainController, "index"]); 
 // array we place instance of Controller and the name
 // method
 
 // Add a route
 $app->get('/hello/{name}', function (Application $app, Request $request, $name) {
-return new Response("Hello $name");
+    return new Response("Hello $name");
 });
 
 $app->run();
@@ -146,13 +151,15 @@ As our project expands, we are including more and more libraries, plugins or cus
 
 namespace DemoNamespace;
 
-class Application extends \Cicada\Application // Our Application class is child object of Cicada\Application
-{ // and inherits every property of our Cicada\Application
+// Our Application class is child object of Cicada\Application
+// and inherits every property of our Cicada\Application
+class Application extends \Cicada\Application 
+{ 
 
-public function __construct($configPath, $domain, $protocol)
-{
-parent::__construct();
-}
+    public function __construct($configPath, $domain, $protocol)
+    {
+        parent::__construct();
+    }
 }
 ```
 
@@ -192,13 +199,13 @@ namespace DemoNamespace\Services;
 
 class MainService
 {
-public function __construct(){
+    public function __construct(){
 
-}
+    }
 
-public function getNames(){
-return [ "Haris", "John", "Dave", "Mary", "Sara"];
-}
+    public function getNames(){
+        return [ "Haris", "John", "Dave", "Mary", "Sara"];
+    }
 }
 ```
 
@@ -213,26 +220,26 @@ use DemoNamespace\Services\MainService;
 
 class MainController
 {
-/** @var MainService $mainService **/
-private $mainService;
+    /** @var MainService $mainService **/
+    private $mainService;
 
-public function __construct($mainService){
-$this->mainService = $mainService;
-}
+    public function __construct($mainService){
+        $this->mainService = $mainService;
+    }
 
-public function index(){
-$names = $this->mainService->getNames();
-$htmlString = "<ul>";
-foreach($names as $name){
-$htmlString = $htmlString. ("<li>".$name."</li>");
-}
-$htmlString = $htmlString."</ul>";
-return "<h1>This is index page</h1>".$htmlString;
-}
+    public function index(){
+        $names = $this->mainService->getNames();
+        $htmlString = "<ul>";
+        foreach($names as $name){
+            $htmlString = $htmlString. ("<li>".$name."</li>");
+        }
+        $htmlString = $htmlString."</ul>";
+        return "<h1>This is index page</h1>".$htmlString;
+    }
 
-public function dashboard(){
-return "<h1>This is dashboard page</h1>";
-}
+    public function dashboard(){
+        return "<h1>This is dashboard page</h1>";
+    }
 }
 ```
 
@@ -248,17 +255,17 @@ use DemoNamespace\Services\MainService;
 class Application extends \Cicada\Application
 {
 
-public function __construct()
-{
-parent::__construct();
-$this->setUpServices();
-}
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setUpServices();
+    }
 
-private function setUpServices(){
-$this['mainService'] = function(){
-return new MainService();
-};
-}
+    private function setUpServices(){
+        $this['mainService'] = function(){
+            return new MainService();
+        };
+    }
 }
 ```
 
