@@ -3,22 +3,22 @@ title: Server
 category: Setting Up
 order: 2
 ---
-Each web application got to be served with HTTP request that are served by Web Server, such as Apache or Nginx.
+Each web application has to be served with HTTP request that is served by Web Server, such as Apache or Nginx.
 
 ### Configuring Apache
 
-We can setup Apache in 2 ways
+We can set up Apache in 2 ways:
 - placing project in root directory
 - placing project as an Virtual Host
 
-In both cases make sure to enable `rewrite_mod` in Apache for Linux users that would be just typing into terminal `a2enmod rewrite`, for Windows users in file `httpd.conf` find line
+In both cases you have to enable `rewrite_mod` in Apache for Linux users that would be just typing into terminal `a2enmod rewrite`, for Windows users in file `httpd.conf` find line
 
 ```apache2.conf
 #LoadModule rewrite_module modules/mod_rewrite.so
 ```
 > httpd.conf
 
-Remove the Hash in front of the sentence, which is sign for starting the comment.Also make sure that option `AllowOverride` is set to `all` . Next step would be placing placing `.htaccess` file in root project directory for using rewrite option. The content of `.htaccess` file is following:
+Remove the Hash in front of the sentence, which is sign for starting the comment. Also make sure that the option `AllowOverride` is set to `all`. Next step is placing `.htaccess` file in root project directory for using rewrite option. The content of `.htaccess` file is as follows:
 
 ```.htaccess
 RewriteEngine On
@@ -30,18 +30,18 @@ RewriteRule ^ index.php [QSA,L]
 
 Please do NOT forget to restart Apache after configuration edit, so the server can load new changes.
 
-So far our root three looks like this
+So far, our root three looks like this:
 
 ```text
 +-- project
 | +-- index.php
 | +-- .htaccess
 ```
-Our file `.htaccess` will play main role in rewriting the requests and sending them to `index.php`.
+Our file `.htaccess` plays the main role in rewriting the requests and sending them to `index.php`.
 
 ### Configuring Nginx
 
-Setting virtual host in Nginx seams more easier. By entering in `/etc/nginx/sites-available/` we should create an instance of host which have to look like this
+Setting virtual host in Nginx seems much easier. By entering in `/etc/nginx/sites-available/` we should create an instance of host, which has to look like this:
 ```
 server {
     listen 80;

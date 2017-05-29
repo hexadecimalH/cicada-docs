@@ -9,13 +9,13 @@ order: 1
 
 ### Installing Cicada
 
-Cicada libraries with Composer, from project folder please execute. If you don't have [Composer](https://getcomposer.org/) installed please refer to this [link](https://getcomposer.org/doc/00-intro.md).
+Cicada libraries can be installed with composer by entering command from project folder. If you don't have [Composer](https://getcomposer.org/) installed, please refer to this [link](https://getcomposer.org/doc/00-intro.md).
 
 ```
 composer require "cicada/cicada=@stable"
 ```
 
-After requiring the Cicada package include the autoload file inside entry point
+After requiring the Cicada package include the autoload file inside entry point.
 
 ```
 <?php

@@ -1,13 +1,13 @@
 ---
 title: Request
-category: Diving into
+category: Diving Into
 order: 2
 ---
-Requests are one of the most important objects in Web Programming, they represent literary the communication between server and client, so we can freely say that requests are the most valuable objects. Cicada in itself contain Symfony component that holds HttpFoundation which has main objects like Request, Response, FileBag, HeaderBag, JsonResponse, Cookie, Sessions and etc. For now we gonna examine Request object, which let as inspect and manipulate HTTP method, body and headers.
+Requests are one of the most important objects in Web Programming. They represent the communication between the server and client, hence requests are the most valuable objects. Cicada in itself contains Symfony component that holds HttpFoundation, which has main objects like Request, Response, FileBag, HeaderBag, JsonResponse, Cookie, Sessions etc. For now, we are going to examine Request object, which let us inspect and manipulate HTTP method, body and headers.
 
-### How to get Request object?
+### How To Get Request Object?
 
-The request object is injected into Cicada routes as a second parameter \(first parameter is allways Application object which let us access our dependencies once again \). So in our methods we can capture request like this
+The request object is injected into Cicada routes as a second parameter \(first parameter is always Application object, which let us access our dependencies once again \). So, in our methods we can capture request like this:
 
 ```php
 public function dashboard(Application $app, Request $request){
@@ -15,9 +15,9 @@ public function dashboard(Application $app, Request $request){
 }
 ```
 
-### Getting parameters
+### Getting Parameters
 
-Getting parameters passed from client side hasn't been easier. Request object allow getting parameter one by one or getting all of them in an array.
+Getting parameters passed from the client has always been common. Request objects in Cicada allow getting parameter one by one or getting all of them in an array.
 
 ```php
 public function dashboard(Application $app, Request $request){
@@ -29,9 +29,9 @@ $parameter = $request->request->get("parameter");
 }
 ```
 
-### Getting media objects
+### Getting Media Objects
 
-Request has also option to get all files or just one media file that has been sent from client side.
+Request has also an option to get all files or just one media file that has been sent from the client side.
 
 ```php
 public function dashboard(Application $app, Request $request){
@@ -56,7 +56,7 @@ Every HTTP request has method that is specific for it like
 * OPTIONS
 * PATCH
 
-We can get name of the method from Request object using method "getMethod\(\)" from request like
+We can get the name of the method from Request object using method "getMethod\(\)" from request like:
 
 ```php
 $method = $request->getMethod();
@@ -70,7 +70,7 @@ $isGet = $request->isMethod("GET");
 
 ### Getting Request URI
 
-Every HTTP request has it's URI that identifies the requested application resource. . The HTTP request URI has several parts:
+Every HTTP request has its URI that identifies the requested application resource. The HTTP request URI has several parts:
 
 * Scheme \(e.g.`http`or `https`\)
 * Host \(e.g.`example.com`\)
@@ -78,7 +78,7 @@ Every HTTP request has it's URI that identifies the requested application resour
 * Path \(e.g.`/users/1`\)
 * Query string \(e.g.`sort=created`&`dir=asc`\)
 
-You can fetch the Request object’s[ ](http://www.php-fig.org/psr/psr-7/#3-5-psr-http-message-uriinterface) URI with its`getUri()`method, it also contains additional methods for retrieving specific parts :
+You can fetch the Request object’s[ ](http://www.php-fig.org/psr/psr-7/#3-5-psr-http-message-uriinterface) URI with its`getUri()`method, it also contains additional methods for retrieving specific parts:
 
 ```php
 $uri = $request->getUri(); // retrieving full URI
@@ -91,7 +91,7 @@ $query = $request->query->get("name"); // retrieveing specific query string
 
 ### Headers
 
-Cicada has accessability to headers as well as their manipulations by simply accessing Request object we can get array with full information about request that arrived
+Cicada has accessability to headers as well as their manipulations. By simply accessing Request object we can get the array with full information about request that arrived
 
 ```php
 // Get request headers as associative array
@@ -102,7 +102,7 @@ $header = $request->headers->get('accept-encoding');
 
 ### Other Methods
 
-Request as a object offer full scope of helpfull methods in order to retrieve the User/Server information that are of crucial importance. Some of them are:
+Request as an object offer full scope of helpfull methods in order to retrieve the User/Server information that are of crucial importance. Some of them are:
 
 * `getCharset()`
 * `getContent()`
@@ -114,4 +114,4 @@ Request as a object offer full scope of helpfull methods in order to retrieve th
 
 ### Conclusion
 
-Request object, and its variations dictates the flow of our application, Cicada has full scope of Request manipulation methods that will make our problems seamless to surpass 
+Request object, and its variations dictates the flow of our application. Cicada has full scope of Request manipulation methods that will make our problems seamless to surpass.

@@ -1,20 +1,20 @@
 ---
 title: Views
-category: Diving into
+category: Diving Into
 order: 4
 ---
 
-Cicada does not have a view layer like in full MVC framework, but instead it implements almost every PHP view parsers. In this documentation we will cover implementing two most widly used by PHP developers those are Twig and Blade. Implementing any of these give us a feeling of a nativ MVC application by means that we can render views pass variables and render HTML before reaching client side.
+Cicada does not have a view layer like in full MVC framework, but instead it implements almost every PHP view parsers. In this documentation, we will cover implementing the two most widely used by PHP developers. Those are Twig and Blade. Implementing any of these two, gives us a feeling of a native MVC application by means that we can render views pass variables and render HTML before reaching the client side.
 
-### Cicada/Twig-view Component
+### Cicada/Twig-View Component
 
-Twig is fast, secure and flexible template engine. Twig uses its one file extension `.twig` and reduces usage of PHP code as much as possible. In this documentation will cover adding Twig to Cicada Application, for further instructions you can refer to a Twig documentation available [here](https://twig.sensiolabs.org/).
+Twig is a fast, secure and flexible template engine. Twig uses its one file extension `.twig` and reduces usage of PHP code as much as possible. In this documentation, we will cover adding Twig to Cicada Application. For further instructions, you can refer to a Twig documentation available [here](https://twig.sensiolabs.org/).
 
-First step of adding twig component to your app is requiring it with composer 
+The first step of adding twig component to your app requires a composer. 
 ```
 composer require twig/twig:~2.0
 ```
-Next step is implementing twig environment into Cicada app, best way would be setting up Twig in Application class so we can keep consistency of application. Before that let's take a look at our `Application.php` file 
+The next step is implementing twig environment into Cicada app. The best way to do it is by setting up Twig in Application class so that the consistency of the application is kept. Before this, let's take a look at our `Application.php` file. 
 ```php
 <?php
 
@@ -38,7 +38,7 @@ class Application extends \Cicada\Application
 }
 ```
 
-Adding Twig into our Dependency Collection is pretty much simple, main paramater for Twig Environment is path to our public folder where we are going to store our templates, so first thing we are creating under the root folder /public_html folder and inside him templates for views, let's review now our project tree.
+Adding Twig into our Dependency Collection is simple. The main paramater for Twig Environment is the path to our public folder where we are going to store our templates. Initially, we are creating under the root folder /public_html folder and inside him the template for views. Let's now review our project tree.
 
 ```
 +-- project/
@@ -87,7 +87,7 @@ After that we are adding function in `Application.php` file
     }
 ```
 
-Next step is to initialize it into our controller and to use it as a private variable
+The next step is to initialize it into our controller and to use it as a private variable.
 ```php
 <?php
 
@@ -121,7 +121,7 @@ class MainController
     }
 ```
 
-Twig has shortend our code makeing it very easy for reading,now lets take a look at `index.twig`
+Twig has shortend our code making it very easy for reading. Let's take a look at `index.twig`. 
 ```
 <html>
     <head>
@@ -139,15 +139,15 @@ Twig has shortend our code makeing it very easy for reading,now lets take a look
 </html>
 ```
 
-And the result is:[](/images/twig_env.png)
+And the result is:![](/images/twigenv.png)
 
 Twig offers many other functionalities for parsing data which you can check out [here](https://twig.sensiolabs.org/).
 
 ### Cicada/Blade Component
 
-Blade is the simple, yet powerful templating engine provided with Laravel. Blade does not restrict you from using plain PHP code in your views. All Blade views are compiled into plain PHP code and cached until they are modified, meaning Blade adds essentially zero overhead to your application. Blade view files use the `.blade.php` file extension. In this documentation will cover just connecting blade with Cicada App for further information please refer to the Blade [documentation](https://laravel.com/docs/5.1/blade).
+Blade is a simple, yet powerful templating engine. Blade does not restrict you from using plain PHP code in your views. All Blade views are compiled into plain PHP code and cached until they are modified, meaning Blade adds essentially zero overhead to your application. Blade view files use the `.blade.php` file extension. This documentation will cover just connecting blade with Cicada App and a basic example. For further information please refer to the Blade [documentation](https://laravel.com/docs/5.1/blade).
 
-Assume that we have same project tree like previously presented
+Assume that we have same project tree like previously presented.
 
 ```
 +-- project/
@@ -168,7 +168,7 @@ Assume that we have same project tree like previously presented
 | +-- composer.lock
 ```
 
-First step would be requiring the blade component into our project using composer by simply entering in our terminal
+The first step would be requiring the blade component into our project using composer by simply entering in our terminal.
 ```
 
 ```
