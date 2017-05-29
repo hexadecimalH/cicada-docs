@@ -1,7 +1,7 @@
 ---
 title: Request
 category: Diving into
-order: 1
+order: 2
 ---
 Requests are one of the most important objects in Web Programming, they represent literary the communication between server and client, so we can freely say that requests are the most valuable objects. Cicada in itself contain Symfony component that holds HttpFoundation which has main objects like Request, Response, FileBag, HeaderBag, JsonResponse, Cookie, Sessions and etc. For now we gonna examine Request object, which let as inspect and manipulate HTTP method, body and headers.
 
@@ -89,5 +89,29 @@ $fullQuery = $request->query->all(); // retrieveing all query strings
 $query = $request->query->get("name"); // retrieveing specific query string
 ```
 
+### Headers
 
+Cicada has accessability to headers as well as their manipulations by simply accessing Request object we can get array with full information about request that arrived
 
+```php
+// Get request headers as associative array
+$header = $request->headers;
+// Get the ACCEPT-ENCODING header
+$header = $request->headers->get('accept-encoding');
+```
+
+### Other Methods
+
+Request as a object offer full scope of helpfull methods in order to retrieve the User/Server information that are of crucial importance. Some of them are:
+
+* `getCharset()`
+* `getContent()`
+* `getContentType()`
+* `getUser()`
+* `getUserInfo()`
+
+... and many others 
+
+### Conclusion
+
+Request object, and its variations dictates the flow of our application, Cicada has full scope of Request manipulation methods that will make our problems seamless to surpass 
