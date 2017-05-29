@@ -3,8 +3,6 @@ title: Server
 category: Setting Up
 order: 2
 ---
-# Setting Up Web Server
-
 Each web application got to be served with HTTP request that are served by Web Server, such as Apache or Nginx.
 
 ### Configuring Apache

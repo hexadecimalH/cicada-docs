@@ -3,11 +3,11 @@ title: Application
 category: Your First Cicada Application
 order: 3
 ---
-Before we approach to next step please make sure that you have created environment for application, if not please refer to Setting Up Server and Setting Up Cicada section. This section will introduce the main principle of Cicada application, which includes setting the namespace, dependency injection, project directory structure and etc.
+Before stepping up, make sure you have created the environment for application, otherwise please refer to [Setting Up Server](/setting-up/server/) and [Setting up Cicada](/setting-up/cicada/) section. This section introduces the main principle of Cicada application, which includes setting the namespace, dependency injection, project directory structure, etc.
 
 ---
 
-So far we have set up our desired server and installed cicada via composer. Our project directory working tree now looks like
+So far, we have set up our desired server and installed Cicada via composer. Our project directory working tree, now looks like this:
 
 ```
 +-- project
@@ -18,7 +18,7 @@ So far we have set up our desired server and installed cicada via composer. Our 
 | +-- composer.lock
 ```
 
-If we inspect our `composer.json` file it will look like this
+If we inspect our `composer.json` file, it will look like this:
 
 ```json
 {
@@ -48,11 +48,11 @@ Namespace in Cicada Framework is defined inside `composer.json`by adding new jso
 }
 ```
 
-As you may notice inside "autoload" property we have another "psr-4" property which is the holder of our namespaces, each namespace have its own root folder within the project root folder, from where it will develop namespace tree. Composer let us create as many namespaces as we need. In this case we have defined "DemoNamespace" which root is "src/" folder in our project directory, also "DemoTestNamespace" is namespace which we will later use for creating and runing Tests and its root folder is "tests/" folder.
+As you may notice, inside "autoload" property we have another "psr-4" property, which is the holder of our namespaces. Each namespace has its own root folder within the project root folder, from where it will develop namespace tree. The composer lets us create as many namespaces as we need. In this case, we have defined "DemoNamespace" which root folder is "src/" in our project directory. We also have defined "DemoTestNamespace" a namespace which we will later use for creating and running Tests and its root folder is "tests/".
 
 ## Project Directory Structure
 
-Keeping project Directory well organized help us to be more productive. Hereby I present you directory structure of my choice, the point here is represent how environment can be organised
+Keeping project Directory well-organized,it helps us to be more productive. Hereby, I present you the directory structure of my choice. The main point here is to represent the way environment can be organized.
 
 ```
 +-- project/
@@ -69,7 +69,7 @@ Keeping project Directory well organized help us to be more productive. Hereby I
 | +-- composer.lock
 ```
 
-Inside root directory we have created "src/" folder where we are going to place full logic of the application, on the other hand in "tests/" folder we are placing tast cases after we are done with app logic. On the other hand, `index.php` serves as an connector or router its main function is to recognize url and send it to right, controller and method.
+Inside root directory we have created "src/" folder where we are going to place full logic of the application. On the other hand, in "tests/" folder we are placing test cases after we are done with app logic. Whereas, `index.php` serves as a connector or router. Its main function is to recognize url and send it to the right controller and method.
 
 ## Application
 
@@ -99,7 +99,7 @@ class MainController
 }
 ```
 
-Now we have controller that serves two main views of our application \( basically they are just function that return string-for now\), in order to get it working we have to create an instance of this MainController in`index.php`and define routes for specific url.
+Now, we have controller that serves two main views of our application \(basically, they are just functions that return string-for now\), and in order to get them working we have to create an instance of this MainController in`index.php`and define routes for specific url.
 
 Let's take a look at `index.php`
 
@@ -136,7 +136,7 @@ $app->get('/hello/{name}', function (Application $app, Request $request, $name) 
 $app->run();
 ```
 
-If we want to add our next page to route we can simply add after our last entry line
+If we want to add our next page to route, simply add it after our last entry line
 
 ```php
 $app->get('/dashboard', [$mainController, "dashboard"]);
@@ -144,7 +144,7 @@ $app->get('/dashboard', [$mainController, "dashboard"]);
 
 ## Dependencies Injection
 
-As our project expands, we are including more and more libraries, plugins or custom classes that will execute desired functions. In order not to complicate dependencies injection we are going to create new class Application.php in which we will create all necessary instances. So let's create Application.php inside "src/" folder with namespace "DemoNamespace"
+As our project expands, we are including more and more libraries, plugins or custom classes that will execute desired functions. In order not to complicate dependencies injection we are going to create new class Application.php in which we will create all necessary instances. Let us create Application.php inside "src/" folder with namespace "DemoNamespace"
 
 ```php
 <?php
@@ -163,7 +163,7 @@ class Application extends \Cicada\Application
 }
 ```
 
-So our index.php can be changed to look like this:
+So our index.php can be changed in order to look like this:
 
 ```php
 <?php
@@ -189,7 +189,7 @@ $app->get('/dashboard', [$mainController, "dashboard"]);
 $app->run();
 ```
 
-Functionality stays the same, except our class application bring us new set of functionalities when it comes to passing of dependencies, let say we have class` MainServce.php` which have method which returns array of names.
+Functionality stays the same, except our class application brings us new set of functionalities. When it comes to passing of dependencies, say, we have class` MainService.php` it has a method which returns array of names.
 
 ```php
 <?php
@@ -209,7 +209,7 @@ class MainService
 }
 ```
 
-These names got to be displayed on client side so the MainService is necessary for MainController, which we will edit like this
+These names has to be displayed on the client side, so the MainService is necessary for MainController, which we will edit it like this:
 
 ```php
 <?php
@@ -243,7 +243,7 @@ class MainController
 }
 ```
 
-But still we are not finished we have to initialize MainService inside our Depenedency Injection. In our `Application.php` create function that will create MainService
+We are not done yet, because we have to initialize MainService inside our Depenedency Injection. In our `Application.php` we will create a function, which will in turn create MainService
 
 ```php
 <?php
@@ -269,7 +269,7 @@ class Application extends \Cicada\Application
 }
 ```
 
-Now back to index.php where we are passing MainService to MainController
+Now, we are back again at index.php. Here we are passing MainService to MainController
 
 ```php
 <?php
@@ -294,7 +294,7 @@ $app->get('/dashboard', [$mainController, "dashboard"]);
 $app->run();
 ```
 
-Let's check the result of our application:![](/images/screenshot.png)Before we move to conclusion let's check our directory root
+Let's check the result of our application:![](/images/screenshot.png) Before we move to conclusion,let's check our directory root
 
 ```
 +-- project/
@@ -317,7 +317,7 @@ Let's check the result of our application:![](/images/screenshot.png)Before we m
 
 ## Conclusion
 
-To sum up what we learned till now, we learned how to define namespace of our application, and we have seen various example of using it. Furthermore, we have seen how dependency is centralized in Cicada, by creating instances of object that we need inside our Application class where we defined.
+All in all, we learned how to define the namespace of our application, and we saw various examples of using it; we saw how dependency is centralized in Cicada, by creating instances of object that we need inside of our Application class where we defined it earlier. 
 
 
 

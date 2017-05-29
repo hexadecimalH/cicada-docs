@@ -168,4 +168,10 @@ Assume that we have same project tree like previously presented
 | +-- composer.lock
 ```
 
+First step would be requiring the blade component into our project using composer by simply entering in our terminal
+```
+
+```
+
+
 
